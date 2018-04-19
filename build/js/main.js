@@ -1,6 +1,8 @@
 'use strict';
 
 var menu = document.querySelector('.menu');
+var btn = document.querySelector('.nav__btn--box');
+var aside = document.querySelector('.aside');
 
 menu.addEventListener('click', function () {
     var icon = menu.children[0];
@@ -40,5 +42,22 @@ $('.slider').slick({
 document.body.addEventListener('click', function (e) {
     if (e.target.tagName === 'A') {
         e.preventDefault();
+    }
+});
+
+btn.addEventListener('click', function () {
+    aside.classList.add('aside--active');
+    btn.classList.remove('nav__btn--active');
+});
+
+aside.addEventListener('mouseleave', function () {
+    aside.classList.remove('aside--active');
+    btn.classList.add('nav__btn--active');
+});
+
+document.body.addEventListener('touchstart', function (e) {
+    if (e.targetTouches[0].target.className === 'section-sandwich') {
+        aside.classList.remove('aside--active');
+        btn.classList.add('nav__btn--active');
     }
 });
